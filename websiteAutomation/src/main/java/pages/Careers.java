@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public class Careers extends Base {
 	
-	By searchBox1 = By.xpath("/html/body/div[1]/section[2]/div/div/header/div[1]/div/div[4]/section/div/form/div[2]/div/div/div[1]/input");
+	By searchBox1 = By.xpath("//*[@id=\"typehead\"]");
 	By submitBtn1 = By.xpath("/html/body/div[1]/section[2]/div/div/header/div[1]/div/div[4]/section/div/form/div[2]/div/span/button");
 	
 	public WebElement search1() {

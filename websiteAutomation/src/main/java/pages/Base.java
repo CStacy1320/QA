@@ -11,26 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Base {
 	
-	static Properties config = new Properties();
-	static FileInputStream in;
-	static WebDriver driver;
+	public static WebDriver driver;
 	
-	public static void properties() {
-		try {
-			in = new FileInputStream("/websiteAutomation/config/config.properties");
-			config.load(in);
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-	}
 	
 	public static void initialize() {
-		properties();
 		try {
+			
+			System.setProperty("webdriver.chrome.driver","C:\\Users\\catni\\OneDrive\\Desktop\\chromedriver.exe" );
 			driver = new ChromeDriver();
-			System.setProperty("webdriver.chrome.driver", config.getProperty("path"));
-			driver.get(config.getProperty("home"));
+			driver.get("https://www.labcorp.com");
+			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 			
 		} catch (Exception e) {
@@ -47,15 +37,13 @@ public class Base {
 	public void switchWindow() {
 		String parent = driver.getWindowHandle();
 		Set<String> windows = driver.getWindowHandles();
-		String child;
-		
 		for(String w : windows) {
-			child = w;
-			driver.close();
-			if (child != parent) {
-				driver.switchTo().window(child);
+			if (parent != w) {
+				driver.switchTo().window(w);
 			}
 		}
+		
+	
 		
 	}
 
